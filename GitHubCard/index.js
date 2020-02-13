@@ -48,18 +48,14 @@ function createCard(object) {
   const card = document.createElement("div"), 
     cardImage = document.createElement("img"), 
     cardInfo = document.createElement("div"),
-    cardName = document.createElement("h3");
+    cardName = document.createElement("h3"),
     cardUserName = document.createElement("p"),
     cardLocation = document.createElement("p"),
     cardProfile = document.createElement("p"),
-    cardProfileLink = document.createElement("a");
+    cardProfileLink = document.createElement("a"),
     cardFollowers = document.createElement("p"),
     cardFollowing = document.createElement("p"),
     cardBio = document.createElement("p");
-
-  card.append(cardImage, cardInfo);
-  cardInfo.append(cardName, cardUserName, cardLocation, cardProfile, cardFollowers, cardFollowing, cardBio);
-  cardProfile.append(cardProfileLink);
 
   card.classList.add("card");
   cardInfo.classList.add("card-info");
@@ -72,10 +68,14 @@ function createCard(object) {
   cardLocation.textContent = `Location: ${object.location}`;
   cardProfileLink.href = object.html_url;
   cardProfileLink.textContent = object.html_url;
-  cardProfile.textContent = `Profile: ${cardProfileLink}`;
+  cardProfile.textContent = "Profile: ";
   cardFollowers.textContent = `Followers: ${object.followers}`;
   cardFollowing.textContent = `Following: ${object.following}`;
   cardBio.textContent = `Bio: ${object.bio}`;
+
+  card.append(cardImage, cardInfo);
+  cardInfo.append(cardName, cardUserName, cardLocation, cardProfile, cardFollowers, cardFollowing, cardBio);
+  cardProfile.append(cardProfileLink);
 
   return card;
 
