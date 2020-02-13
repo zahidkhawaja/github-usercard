@@ -24,7 +24,7 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ["cgiroux86", "teaguehannam", "dakoriah", "NataliaBeckstead", "benjberg"];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
 Using DOM methods and properties, create a component that will return the following DOM element:
@@ -54,12 +54,14 @@ function createCard(object) {
     cardUserName = document.createElement("p"),
     cardLocation = document.createElement("p"),
     cardProfile = document.createElement("p"),
+    cardProfileLink = document.createElement("a");
     cardFollowers = document.createElement("p"),
     cardFollowing = document.createElement("p"),
     cardBio = document.createElement("p");
 
   card.append(cardImage, cardInfo);
   cardInfo.append(cardName, cardUserName, cardLocation, cardProfile, cardFollowers, cardFollowing, cardBio);
+  cardProfile.append(cardProfileLink);
 
   card.classList.add("card");
   cardInfo.classList.add("card-info");
@@ -70,7 +72,9 @@ function createCard(object) {
   cardName.textContent = object.name;
   cardUserName.textContent = object.login;
   cardLocation.textContent = `Location: ${object.location}`;
-  cardProfile.textContent = `Profile: ${object.html_url}`;
+  cardProfileLink.href = object.html_url;
+  cardProfileLink.textContent = object.html_url;
+  cardProfile.textContent = `Profile: ${cardProfileLink}`;
   cardFollowers.textContent = `Followers: ${object.followers}`;
   cardFollowing.textContent = `Following: ${object.following}`;
   cardBio.textContent = `Bio: ${object.bio}`;
