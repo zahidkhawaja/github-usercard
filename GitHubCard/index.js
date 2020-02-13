@@ -1,5 +1,5 @@
 /* Step 1: using axios, send a GET request to the following URL 
-           (replacing the palceholder with your Github name):
+           (replacing the placeholder with your Github name):
            https://api.github.com/users/<your name>
 */
 
@@ -27,7 +27,7 @@
 const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
-          Using DOM methods and properties, create a component that will return the following DOM element:
+Using DOM methods and properties, create a component that will return the following DOM element:
 
 <div class="card">
   <img src={image url of user} />
@@ -45,6 +45,49 @@ const followersArray = [];
 </div>
 
 */
+
+function createCard(object) {
+  const card = document.createElement("div"), 
+    cardImage = document.createElement("img"), 
+    cardInfo = document.createElement("div"),
+    cardName = document.createElement("h3");
+    cardUserName = document.createElement("p"),
+    cardLocation = document.createElement("p"),
+    cardProfile = document.createElement("p"),
+    cardFollowers = document.createElement("p"),
+    cardFollowing = document.createElement("p"),
+    cardBio = document.createElement("p");
+
+  card.append(cardImage, cardInfo);
+  cardInfo.append(cardName, cardUserName, cardLocation, cardProfile, cardFollowers, cardFollowing, cardBio);
+
+  card.classList.add("card");
+  cardInfo.classList.add("card-info");
+  cardName.classList.add("name");
+  cardUserName.classList.add("username");
+
+  cardImage.src = object.avatar_url;
+  cardName.textContent = object.name;
+  cardUserName.textContent = object.login;
+  cardLocation.textContent = `Location: ${object.location}`;
+  cardProfile.textContent = `Profile: ${object.html_url}`;
+  cardFollowers.textContent = `Followers: ${object.followers}`;
+  cardFollowing.textContent = `Following: ${object.following}`;
+  cardBio.textContent = `Bio: ${object.bio}`;
+
+  return card;
+
+}
+
+const cardsEntry = document.querySelector(".cards");
+
+axios.get("https://api.github.com/users/zahidkhawaja")
+  .then(response => {
+    return cardsEntry.append(createCard(response.data));
+  })
+  .catch(error => {
+    console.log("The data was not returned", error)
+  })
 
 /* List of LS Instructors Github username's: 
   tetondan
