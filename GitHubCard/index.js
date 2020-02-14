@@ -55,7 +55,8 @@ function createCard(object) {
     cardProfileLink = document.createElement("a"),
     cardFollowers = document.createElement("p"),
     cardFollowing = document.createElement("p"),
-    cardBio = document.createElement("p");
+    cardBio = document.createElement("p"),
+    cardChart = document.createElement("img");
 
   card.classList.add("card");
   cardInfo.classList.add("card-info");
@@ -72,9 +73,13 @@ function createCard(object) {
   cardFollowers.textContent = `Followers: ${object.followers}`;
   cardFollowing.textContent = `Following: ${object.following}`;
   cardBio.textContent = `Bio: ${object.bio}`;
+  cardChart.src = `http://ghchart.rshah.org/${object.login}`;
+  cardChart.style.width = "100%";
+  cardChart.style.marginRight = "0px";
+  cardChart.style.marginTop = "10px";
 
   card.append(cardImage, cardInfo);
-  cardInfo.append(cardName, cardUserName, cardLocation, cardProfile, cardFollowers, cardFollowing, cardBio);
+  cardInfo.append(cardName, cardUserName, cardLocation, cardProfile, cardFollowers, cardFollowing, cardBio, cardChart);
   cardProfile.append(cardProfileLink);
 
   return card;
